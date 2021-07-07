@@ -13,7 +13,10 @@ module.exports = youTube = {
         })
         youTube.page = await youTube.browser.newPage();
 
-        await youTube.page.goto(BASE_URL, { waitUntil: 'networkidle2' })
+    },
+    goToURL: async (url) => {
+        await youTube.page.goto(url, { waitUntil: 'networkidle2' })
+
     },
     acceptCookies: async () => {
         await youTube.page.waitFor(1000)
@@ -80,11 +83,20 @@ module.exports = youTube = {
         });
         console.log(await users, await comments)
 
+        fs.appendFile("users.json", JSON.stringify(users), err => {
 
+            // Checking for errors
+            if (err) throw err;
 
+            console.log("Done writing"); // Success
+        });
+        fs.appendFile("comments.json", JSON.stringify(comments), err => {
 
+            // Checking for errors
+            if (err) throw err;
 
-
+            console.log("Done writing"); // Success
+        });
     }
 
 
