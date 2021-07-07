@@ -1,15 +1,17 @@
-const express = require('express')
+const express = require('express');
+const { readFiles } = require('./youtube');
 const youTube = require('./youtube')
 
 async function startTheParty() {
-    let arrayOfSearch = ['selena gomez', 'funny videos', 'cats', 'dogs', 'anime', 'HAHAHA']
-    await youTube.initialize();
-    for (const search of arrayOfSearch) {
-        await youTube.goToURL('https://youtube.com')
-        await youTube.acceptCookies();
-        await youTube.searchVideo(search)
-        await youTube.getComments()
-    }
+    // let arrayOfSearch = ['selena gomez', 'funny videos', 'cats', 'dogs', 'anime', 'HAHAHA']
+    // await youTube.initialize();
+    // for (const search of arrayOfSearch) {
+    //     await youTube.goToURL('https://youtube.com')
+    //     await youTube.acceptCookies();
+    //     await youTube.searchVideo(search)
+    //     await youTube.getComments()
+    // }
+    readFiles()
 
 }
 

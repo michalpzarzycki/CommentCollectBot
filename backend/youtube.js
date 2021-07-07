@@ -83,21 +83,32 @@ module.exports = youTube = {
         });
         console.log(await users, await comments)
 
-        fs.appendFile("users.json", JSON.stringify(users), err => {
+        fs.appendFile("users.json", JSON.stringify(JSON.stringify({ ...users })), err => {
 
             // Checking for errors
             if (err) throw err;
 
             console.log("Done writing"); // Success
         });
-        fs.appendFile("comments.json", JSON.stringify(comments), err => {
+        fs.appendFile("comments.json", JSON.stringify(JSON.stringify({ ...comments })), err => {
 
             // Checking for errors
             if (err) throw err;
 
             console.log("Done writing"); // Success
         });
+    },
+    readFiles: async () => {
+        fs.readFile('./users.json', 'utf-8', (err, data) => {
+            if (err) {
+                console.log(err)
+                return err
+            }
+            let parsed = JSON.parse(JSON.parse(data))
+            console.log(parsed)
+
+            Object.keys(parsed).forEach(x => console.log(parsed[x]))
+        })
     }
-
 
 }
