@@ -1,7 +1,10 @@
+const fs = require('fs');
+
 const puppeteer = require('puppeteer');
 const BASE_URL = 'https://youtube.com'
 
 module.exports = youTube = {
+
     browser: null,
     page: null,
     initialize: async () => {
@@ -30,9 +33,10 @@ module.exports = youTube = {
         if (searchButton) {
             await searchButton.click()
         }
-        await youTube.page.waitFor(3000)
+        await youTube.page.waitForFunction('document.querySelector("#video-title > yt-formatted-string")');
 
         await youTube.page.evaluate(async () => {
+
             let elements = document.querySelector('#video-title > yt-formatted-string');
             console.log(elements)
             if (elements) {
@@ -61,7 +65,27 @@ module.exports = youTube = {
         }
         await scrollBottom()
     },
+    getComments: async () => {
 
+        await youTube.page.waitForFunction('document.querySelector("#contents")');
+        const users = await youTube.page.$$eval('#author-text > span', _users => {
+            let arr = []
+            _users.map(x => arr.push(x.innerText))
+            return arr
+        });
+        const comments = await youTube.page.$$eval('#content-text', _comments => {
+            let arr = []
+            _comments.map(x => arr.push(x.innerText))
+            return arr
+        });
+        console.log(await users, await comments)
+
+
+
+
+
+
+    }
 
 
 }
