@@ -1,6 +1,6 @@
-const express = require('express');
-const { readFiles } = require('./youtube');
 const youTube = require('./youtube')
+
+
 
 async function startTheParty() {
     // let arrayOfSearch = ['selena gomez', 'funny videos', 'cats', 'dogs', 'anime', 'HAHAHA']
@@ -16,3 +16,5 @@ async function startTheParty() {
 }
 
 startTheParty();
+
+
