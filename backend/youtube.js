@@ -20,8 +20,34 @@ module.exports = youTube = {
         if (span) {
             await span.click();
         }
-        await youTube.page.waitFor(1000)
+        await youTube.page.waitFor(3000)
+    },
+    searchVideo: async (videoTitle) => {
+        await youTube.page.waitFor(7000)
 
+        await youTube.page.type('input[name="search_query"]', videoTitle, { delay: 50 })
+        let [searchButton] = await youTube.page.$$('#search-icon-legacy');
+        if (searchButton) {
+            await searchButton.click()
+        }
+        await youTube.page.waitFor(3000)
+
+        // let videos = await youTube.page.$$('#video-title');
+        // videos
+        // if (videos) {
+        //     await videos.click()
+        // }
+        // console.log()
+
+        await youTube.page.evaluate(async () => {
+            let elements = document.querySelector('#video-title > yt-formatted-string');
+            console.log(elements)
+            if (elements) {
+                console.log("FOUND")
+                elements.click();
+            }
+
+        });
     }
 
 }
