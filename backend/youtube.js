@@ -23,21 +23,14 @@ module.exports = youTube = {
         await youTube.page.waitFor(3000)
     },
     searchVideo: async (videoTitle) => {
-        await youTube.page.waitFor(7000)
 
+        await youTube.page.waitForFunction('document.querySelector("#search-icon-legacy")');
         await youTube.page.type('input[name="search_query"]', videoTitle, { delay: 50 })
         let [searchButton] = await youTube.page.$$('#search-icon-legacy');
         if (searchButton) {
             await searchButton.click()
         }
         await youTube.page.waitFor(3000)
-
-        // let videos = await youTube.page.$$('#video-title');
-        // videos
-        // if (videos) {
-        //     await videos.click()
-        // }
-        // console.log()
 
         await youTube.page.evaluate(async () => {
             let elements = document.querySelector('#video-title > yt-formatted-string');
@@ -48,6 +41,25 @@ module.exports = youTube = {
             }
 
         });
+        await youTube.page.waitFor(2000)
+
+        async function scrollBottom() {
+
+
+            await youTube.page.evaluate(() => document.scrollingElement.scrollBy(0, 1000))
+            await youTube.page.waitFor(2000)
+            await youTube.page.evaluate(() => document.scrollingElement.scrollBy(1000, 2000))
+            await youTube.page.waitFor(2000)
+            await youTube.page.evaluate(() => document.scrollingElement.scrollBy(2000, 3000))
+            await youTube.page.waitFor(2000)
+            await youTube.page.evaluate(() => document.scrollingElement.scrollBy(3000, 4000))
+            await youTube.page.waitFor(2000)
+            await youTube.page.evaluate(() => document.scrollingElement.scrollBy(4000, 5000))
+            await youTube.page.waitFor(2000)
+            await youTube.page.evaluate(() => document.scrollingElement.scrollBy(5000, 6000))
+
+        }
+        await scrollBottom()
     }
 
 }
