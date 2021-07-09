@@ -7,6 +7,8 @@ module.exports = youTube = {
 
     browser: null,
     page: null,
+    comments: {},
+    users: {},
     initialize: async () => {
         youTube.browser = await puppeteer.launch({
             headless: false
@@ -81,23 +83,24 @@ module.exports = youTube = {
             _comments.map(x => arr.push(x.innerText))
             return arr
         });
-        console.log(await users, await comments)
 
-        fs.appendFile("users.json", JSON.stringify(JSON.stringify({ ...users })), err => {
+        return { comments, users }
 
-            // Checking for errors
-            if (err) throw err;
-
-            console.log("Done writing"); // Success
-        });
-        fs.appendFile("comments.json", JSON.stringify(JSON.stringify({ ...comments })), err => {
-
-            // Checking for errors
-            if (err) throw err;
-
-            console.log("Done writing"); // Success
-        });
     },
+    saveCommentsAndUsers: async (comments, users) => {
+
+        fs.writeFile('./users.json', JSON.stringify(JSON.stringify({ ...users })), (err) => {
+            if (err) throw err
+            console.log("DONE")
+        })
+        fs.writeFile('./comments.json', JSON.stringify(JSON.stringify({ ...comments })), (err) => {
+            if (err) throw err
+            console.log("DONE")
+        })
+
+
+    }
+    ,
     readFiles: async () => {
         fs.readFile('./users.json', 'utf-8', (err, data) => {
             if (err) {
