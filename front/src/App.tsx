@@ -18,9 +18,11 @@ function App() {
     <div className="App">
       <h1>FREE USERNAMES AND COMMENTS API</h1>
       <section className="users_section">
+        <h1 className="section_title">USERS</h1>
         <UsersDisplay users={users} />
       </section>
       <section className="comments_section">
+        <h1 className="section_title">COMMENTS</h1>
         <CommentsDisplay comments={users} />
       </section>
     </div>

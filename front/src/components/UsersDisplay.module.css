@@ -1,13 +1,15 @@
 .slides {
     overflow: scroll;
     overflow-x: hidden;
-    height: calc(75vh - 2px);
+    height: calc(75vh - 4px);
     width: 350px;
-    border: 1px solid black;
+    border: 2px solid black;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     transform-style: preserve-3d;
+    box-shadow: 2px 2px 0 rgba(0,0,0,1);
+    color: white;
 
 }

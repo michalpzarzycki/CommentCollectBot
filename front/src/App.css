@@ -1,9 +1,25 @@
+
+
+
+::selection {
+  background: #0080FF;
+  text-shadow: none;
+}
+
 .App {
   display: grid;
   text-align: center;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 4fr;
+
+  background-color: #1300e8;
+
+  height: 100vh;
+  color: white;
+  font: 1.3rem Inconsolata, monospace;
+  text-shadow: 0 0 5px #C8C8C8;
 }
+
 
 .App > h1 {
   grid-column-start: 1;
@@ -33,4 +49,9 @@
   display: grid;
 
   place-items: center;
+}
+
+.section_title {
+  margin: 1px;
+  padding: 0;
 }
