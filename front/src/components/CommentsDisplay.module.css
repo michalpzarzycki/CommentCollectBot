@@ -2,7 +2,7 @@
     overflow: scroll;
     overflow-x: hidden;
     height: calc(75vh - 4px);
-    width: 350px;
+    width: 750px;
     border: 2px solid black;
     display: flex;
     justify-content: center;

@@ -5,6 +5,8 @@ import UsersDisplay from "./components/UsersDisplay";
 import CommentsDisplay from "./components/CommentsDisplay";
 function App() {
   const [users, setUsers] = useState<any>([]);
+  const [comments, setComments] = useState<any>([]);
+
   useEffect(() => {
     axios.get("http://localhost:8000/api/users").then((users) => {
       let array = [];
@@ -12,6 +14,14 @@ function App() {
         array.push(users.data[key]);
       }
       setUsers([...array]);
+    });
+
+    axios.get("http://localhost:8000/api/comments").then((comments) => {
+      let arr = [];
+      for (let key in comments.data) {
+        arr.push(comments.data[key]);
+      }
+      setComments([...arr]);
     });
   }, []);
   return (
@@ -23,7 +33,7 @@ function App() {
       </section>
       <section className="comments_section">
         <h1 className="section_title">COMMENTS</h1>
-        <CommentsDisplay comments={users} />
+        <CommentsDisplay comments={comments} />
       </section>
     </div>
   );
