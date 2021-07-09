@@ -11,9 +11,7 @@ router.get('/users', (req, res) => {
         }
         let parsed = JSON.parse(JSON.parse(data))
         console.log(parsed)
-        res.json({
-            ...parsed
-        })
+        res.json(parsed)
 
     })
 
