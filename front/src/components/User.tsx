@@ -1,7 +1,7 @@
 import styles from "./User.module.css";
 
-function User({ user }: any) {
-  return <div className={styles.container}>{user}</div>;
+function User({ user, idx }: any) {
+  return <div className={styles.container}>{`${idx + 1}. ${user}`}</div>;
 }
 
 export default User;
